@@ -1,6 +1,6 @@
 package org.vinsw.mockito;
 
-public interface ITweet {
-    
+public interface ISender {
+
     String getMessage();
 }

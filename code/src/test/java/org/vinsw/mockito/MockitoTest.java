@@ -1,14 +1,16 @@
-package org.vinsw.mokito;
+package org.vinsw.mockito;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
+import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MockitoTest {
@@ -16,26 +18,29 @@ public class MockitoTest {
     @Mock
     List<String> mockedList;
 
+    @Spy
+    SampleClassForMockito scfm; // every call is delegated to the real object
+
     @Test
     public void whenUseMockAnnotation_thenMockIsInjected() {
         mockedList.add("one");
-        Mockito.verify(mockedList).add("one");
-        something();
+        verify(mockedList).add("one"); // verify the .add("one") method call
+        doSomething();
+        verify(mockedList).add("3");
+        verify(mockedList).add("3");
+        verify(mockedList).clear();
+        assertEquals(0, mockedList.size()); // because is a mocked object
 
-        Mockito.verify(mockedList).add("3");
-        Mockito.verify(mockedList).clear();
-        assertEquals(0, mockedList.size());
-
-        Mockito.when(mockedList.size()).thenReturn(100);
+        when(mockedList.size()).thenReturn(100); // define return value for .size()
         assertEquals(100, mockedList.size());
     }
 
-    @Test
-    public void SimpleTest() {
-
+    @Test(expected = NullPointerException.class)
+    public void throwNullPointerException() {
+        scfm.generateException(3);
     }
 
-    private void something() {
+    private void doSomething() {
         mockedList.add("3");
         mockedList.clear();
     }

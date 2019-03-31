@@ -4,17 +4,17 @@ import org.junit.Test;
 
 import static org.mockito.Mockito.*;
 
-public class TweetClientTest {
+public class SenderImplTest {
 
     @Test
     public void testSendingTweet() {
-        TweetClient tc = new TweetClient();
+        SenderImpl sender = new SenderImpl();
 
-        ITweet iTweet = mock(ITweet.class);
-        when(iTweet.getMessage()).thenReturn("Using mockito is great!");
+        ISender iSender = mock(ISender.class);
+        when(iSender.getMessage()).thenReturn("Message to send!");
 
-        tc.sendTweet(iTweet);
+        sender.sendToHost(iSender);
 
-        verify(iTweet, atLeastOnce()).getMessage();
+        verify(iSender, atLeastOnce()).getMessage();
     }
 }

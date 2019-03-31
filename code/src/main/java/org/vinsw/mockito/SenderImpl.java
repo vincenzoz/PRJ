@@ -1,11 +1,11 @@
 package org.vinsw.mockito;
 
-public class TweetClient {
+public class SenderImpl {
 
-    public void sendTweet(ITweet tweet) {
-        String message = tweet.getMessage();
+    public void sendToHost(ISender sender) {
+        String message = sender.getMessage();
 
-        //send message to tweet
+        //send message to host
 
     }
 }

@@ -1,4 +1,4 @@
-drop TABLE student;
+drop table student;
 
 create table student
 (

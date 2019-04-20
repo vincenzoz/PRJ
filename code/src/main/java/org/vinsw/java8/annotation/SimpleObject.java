@@ -1,6 +1,5 @@
 package org.vinsw.java8.annotation;
-
-import javax.activation.DataSource;
+import javax.sql.DataSource;
 
 public class SimpleObject {
 

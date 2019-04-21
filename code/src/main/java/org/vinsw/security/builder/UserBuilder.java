@@ -28,8 +28,8 @@ public class UserBuilder {
     public User build() {
         final User user = new User();
         user.setId(id);
-        user.setPassword(username);
-        user.setUsername(passowrd);
+        user.setUsername(username);
+        user.setPassword(passowrd);
         return user;
     }
 

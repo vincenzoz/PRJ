@@ -18,6 +18,11 @@ public class UserController extends BaseController {
     @Autowired
     UserValidator validator;
 
+    @GetMapping
+    public String ping() {
+        return "UP";
+    }
+
     @GetMapping(path = "/{userId}")
     public User getUser(@PathVariable("userId") Long userId) {
         System.out.println("param: userId:" + userId);
